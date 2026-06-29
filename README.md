@@ -222,6 +222,56 @@ A base out-of-time representa dados de um período posterior ao treinamento. O P
 
 ---
 
+## Notas e problemas conhecidos
+
+### 1. Datasets não versionados
+
+A pasta `datasets/` (contendo `train.gz`, `test.gz` e `oot.gz`) **não está incluída neste repositório**. Os arquivos precisam ser obtidos a partir do repositório original do desafio:
+
+> [https://github.com/Neurolake/challenge-data-scientist](https://github.com/Neurolake/challenge-data-scientist)
+
+Após baixar, coloque a pasta na raiz do projeto com a seguinte estrutura:
+
+```
+monitoramento-modelos-ml/
+└── datasets/
+    └── credit_01/
+        ├── train.gz
+        ├── test.gz
+        └── oot.gz
+```
+
+O endpoint `/v1/aderencia` depende desses arquivos para funcionar.
+
+---
+
+### 2. Conflito de versões no requirements.txt
+
+O `requirements.txt` original (com `pandas~=1.3.5` sem numpy fixado) causa erro de **binary incompatibility** entre numpy e pandas ao instalar em ambientes mais recentes. A solução é fixar todas as dependências numéricas na mesma geração:
+
+```
+numpy==1.21.6
+pandas==1.3.5
+scikit-learn==1.0.2
+scipy==1.7.3
+```
+
+Essas versões são contemporâneas entre si e eliminam o conflito.
+
+---
+
+### 3. Erro "Found unknown categories" no OneHotEncoder
+
+Ao escorar bases com categorias não vistas durante o treinamento (como algumas colunas categóricas em `oot.gz`), o pipeline do scikit-learn lança:
+
+```
+ValueError: Found unknown categories during transform
+```
+
+A solução foi ajustar o `OneHotEncoder` com `handle_unknown='ignore'`, que ignora categorias desconhecidas em vez de interromper a execução.
+
+---
+
 ## Checklist de entrega
 
 | # | Requisito do desafio | Status | Onde está |
