@@ -219,3 +219,27 @@ A base de treino pertence ao mesmo período temporal de desenvolvimento do model
 
 **`oot.gz` — divergência detectada (KS 0.0217, P-valor ≈ 0)**  
 A base out-of-time representa dados de um período posterior ao treinamento. O P-valor praticamente zero rejeita a hipótese nula de igualdade das distribuições, sinalizando **data drift**: o comportamento dos clientes nesse período difere do que o modelo foi treinado para capturar. Embora o KS de 0.0217 seja pequeno em valor absoluto (~2,2% de diferença máxima entre as distribuições acumuladas), a significância estatística indica que o modelo deve ser monitorado e possivelmente retreinado com dados mais recentes para manter sua capacidade preditiva.
+
+---
+
+## Checklist de entrega
+
+| # | Requisito do desafio | Status | Onde está |
+|---|---|---|---|
+| 1 | API construída com FastAPI + Uvicorn | ✅ | `monitoring/app/main.py` |
+| 2 | Endpoint `POST /v1/performance` implementado | ✅ | `monitoring/app/api/endpoints/performance.py` |
+| 3 | Resposta inclui (a) volumetria por mês | ✅ | Seção [Endpoints](#post-v1performance) |
+| 4 | Resposta inclui (b) AUC-ROC do modelo | ✅ | AUC-ROC: 0.5752 |
+| 5 | Testado com `batch_records.json` | ✅ | 500 registros, evidência #4 e #5 |
+| 6 | Endpoint `POST /v1/aderencia` implementado | ✅ | `monitoring/app/api/endpoints/aderencia.py` |
+| 7 | Cálculo de métrica de distância de distribuições (KS) | ✅ | Seção [Endpoints](#post-v1aderencia) |
+| 8 | Testado com `train.gz` | ✅ | KS 0.0019 · P-valor 0.9993 — evidência #6 |
+| 9 | Testado com `oot.gz` | ✅ | KS 0.0217 · P-valor 0.0000 — evidência #7 |
+| 10 | Jupyter Notebook com chamada aos 2 endpoints | ✅ | `monitoring/notebook_avaliacao.ipynb` |
+| 11 | Documentação clara do formato do "body" da API | ✅ | Swagger UI (`/docs`) + seção Endpoints do README |
+| 12 | Repositório no GitHub | ✅ | Este repositório |
+| 13 | Solução construída com auxílio de IA | ✅ | Claude Code, listado como colaborador |
+
+---
+
+**Resumo:** todos os itens obrigatórios do desafio foram entregues e validados via testes reais contra a API em execução local, com evidências documentadas na seção [Evidências](#evidências) abaixo.
