@@ -190,7 +190,7 @@ Célula do notebook que carrega os 500 registros de `batch_records.json` e os en
 
 Resposta processada e exibida no notebook: tabela de volumetria por mês (jan a ago/2017) e **AUC-ROC: 0.5752**.
 
-![Resultado de Performance — volumetria por mês e AUC-ROC](docs/03a-notebook-aderencia-train.png)
+![Resultado de Performance — volumetria por mês e AUC-ROC](docs/02-notebook-performance.png)
 
 ---
 
