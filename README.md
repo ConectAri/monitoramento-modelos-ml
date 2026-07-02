@@ -2,6 +2,8 @@
 
 API REST para monitoramento de modelos de machine learning, desenvolvida como parte de um **desafio técnico de Data Science/ML**. A aplicação expõe dois endpoints para avaliação contínua de um modelo de crédito pré-treinado: um para medir performance (AUC-ROC) e outro para verificar aderência estatística de novos datasets em relação à base de referência via teste de Kolmogorov-Smirnov.
 
+Em outras palavras: API de monitoramento de modelos de machine learning, desenvolvida como desafio técnico de Data Science. Permite verificar, de forma automatizada, duas coisas: se o modelo de crédito pré-treinado continua performando bem (medido pela AUC-ROC), e se os dados que chegam estão mudando com o tempo em relação à base original — o que pode indicar que o modelo precisa ser atualizado (detectado pelo teste KS).
+
 ---
 
 ## Estrutura do repositório
